@@ -13,13 +13,14 @@ Install XSockets.NET Realtime framework into your Visual Studio solution by usin
 
 Open the Package Manager console and type the following command.
 
-    PM> Install-Package XSockets
+    PM> Install-Package XSockets.Sample.WebRTC
 
 ##Testing WebRTC
+When installation is completed just follow these steps
 
- 1. When installation is completed just add the files/folders found under the "src" catalog in this repo.
- 2. Now make sure that XSockets will start when you start your project. To do this right click on your project and choose properties. Then go to the "Web" tab and choose "Use Visual Studio Development Server".
- 3. Under the Client folder you will find a index.html file... Right click and choose "View In Browser"
+ 1. Under WebRTCSample\Client right click on index.html and select "set as startpage"
+ 2. Right click the project and select properties.
+ 3. Under the "Web" tab go to the "Servers" section and set Use Visual Studio Development Server
  4. Open a few instances of chrome to the same URL and try it out.
 
 To build your own conference solution is really easy. Consult the [XSockets.NET developer forum][1] for help and guidance.
