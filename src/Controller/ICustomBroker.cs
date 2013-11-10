@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using WebRTCSample.Controller.Models;
 using XSockets.Core.Common.Socket.Event.Interface;
-using YourNamespace.Models;
 
-namespace YourNamespace
+namespace WebRTCSample.Controller
 {
-    public interface IBroker
+    public interface ICustomBroker
     {
         /// <summary>
         /// List of PeerConnections that the Current PeerConnections has connected to

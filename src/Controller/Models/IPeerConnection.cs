@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace YourNamespace.Models
+namespace WebRTCSample.Controller.Models
 {
     public interface IPeerConnection
     {

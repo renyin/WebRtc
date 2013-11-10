@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using WebRTCSample.Controller.Constants;
+using WebRTCSample.Controller.Extentions;
+using WebRTCSample.Controller.Models;
 using XSockets.Core.Common.Socket.Event.Arguments;
 using XSockets.Core.Common.Socket.Event.Attributes;
 using XSockets.Core.Common.Socket.Event.Interface;
 using XSockets.Core.XSocket;
 using XSockets.Core.XSocket.Helpers;
-using YourNamespace.Constants;
-using YourNamespace.Extentions;
-using YourNamespace.Models;
 
-namespace YourNamespace
+namespace WebRTCSample.Controller
 {
     /// <summary>
     /// A custom Peerbroker for WebRTC signaling and WebSocket communication on top of XSockets.NET
     /// </summary>
-    public sealed class Broker : XBaseSocket, IBroker
+    public sealed class CustomBroker : XSocketController, ICustomBroker
     {
         #region Public Properties
 
@@ -37,13 +37,13 @@ namespace YourNamespace
         /// <summary>
         /// Ctor - setting up connectionlist and open/close events
         /// </summary>
-        public Broker()
+        public CustomBroker()
         {
             Connections = new List<IPeerConnection>(); 
 
-            this.OnClientDisConnect += _OnClose;            
+            this.OnClose += _OnClose;            
 
-            this.OnClientConnect += _OnOpen;            
+            this.OnOpen += _OnOpen;            
         }
 
         #endregion
@@ -73,7 +73,7 @@ namespace YourNamespace
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="onClientDisConnectArgs"></param>
-        private void _OnClose(object sender, OnClientDisConnectArgs onClientDisConnectArgs)
+        private void _OnClose(object sender, OnClientDisconnectArgs onClientDisConnectArgs)
         {
             this.NotifyPeerLost();
         }

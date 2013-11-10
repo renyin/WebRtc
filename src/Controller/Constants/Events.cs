@@ -1,4 +1,4 @@
-﻿namespace YourNamespace.Constants
+﻿namespace WebRTCSample.Controller.Constants
 {
     /// <summary>
     /// Constants for the events used in communication

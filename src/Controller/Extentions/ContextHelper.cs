@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WebRTCSample.Controller.Constants;
+using WebRTCSample.Controller.Models;
 using XSockets.Core.Common.Socket;
 using XSockets.Core.XSocket;
 using XSockets.Core.XSocket.Helpers;
-using YourNamespace.Constants;
-using YourNamespace.Models;
 
-namespace YourNamespace.Extentions
+namespace WebRTCSample.Controller.Extentions
 {
     /// <summary>
     /// Extension for finding and signaling clients
@@ -20,7 +20,7 @@ namespace YourNamespace.Extentions
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
         /// <param name="context"></param>
-        internal static void NotifyContextChange<T>(this T obj, Guid context) where T : XBaseSocket, IBroker, IXBaseSocket
+        internal static void NotifyContextChange<T>(this T obj, Guid context) where T : XSocketController, ICustomBroker, IXSocketController
         {
             obj.NotifyContextChange(context, null);
         }
@@ -32,7 +32,7 @@ namespace YourNamespace.Extentions
         /// <param name="obj"></param>
         /// <param name="contextId"></param>
         /// <param name="callback"></param>
-        internal static void NotifyContextChange<T>(this T obj, Guid context, Action callback) where T : XBaseSocket, IBroker, IXBaseSocket
+        internal static void NotifyContextChange<T>(this T obj, Guid context, Action callback) where T : XSocketController, ICustomBroker, IXSocketController
         {
             // Notify a context change                        
             obj.SendTo(c => c.Peer.Context.Equals(context), obj.Find(q => q.Peer.Context.Equals(context)).Select(p => p.Peer), Events.Context.Changed);
@@ -45,7 +45,7 @@ namespace YourNamespace.Extentions
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
-        internal static void ConnectToContext<T>(this T obj) where T : XBaseSocket, IBroker, IXBaseSocket
+        internal static void ConnectToContext<T>(this T obj) where T : XSocketController, ICustomBroker, IXSocketController
         {            
             // Pass the client a list of Peers to Connect
             obj.Send(obj.Connections(obj.Peer)
@@ -61,7 +61,7 @@ namespace YourNamespace.Extentions
         /// <param name="peerConnection"></param>
         /// <returns></returns>
         internal static IEnumerable<T> Connections<T>(this T obj, IPeerConnection peerConnection)
-            where T : XBaseSocket, IBroker, IXBaseSocket
+            where T : XSocketController, ICustomBroker, IXSocketController
         {            
             return obj.Find(f => f.Peer.Context.Equals(peerConnection.Context)).Select(p => p).Except(new List<T>{obj});
         }
