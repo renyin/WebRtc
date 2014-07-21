@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 
@@ -190,3 +191,9 @@ When a remote stream removes a stream (`.removeStream(mediaStreamId)`) the JavaS
         console.log("a remote peerconnection removed a stream", event);
          // remove video element by using the event.StreamID property
      });
+=======
+WebRtc
+======
+
+My journey with WebRTC 
+>>>>>>> 75ef3e436eb1290e5a8e4f9603bd6d8e5b2d74c2
